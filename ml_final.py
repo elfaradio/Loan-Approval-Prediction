@@ -27,7 +27,6 @@ from sklearn.metrics import (
 
 import pickle
 
-"""#Task-1"""
 
 df = pd.read_csv('loan.csv')
 df.shape
@@ -36,9 +35,6 @@ df.info()
 
 df.head(5)
 
-"""#Task-2
-
-"""
 
 df.isnull().sum()
 
@@ -84,9 +80,6 @@ pre = ColumnTransformer(transformers=[
     ('cat', catp, catef)
 ])
 
-"""#Task-3
-
-"""
 
 # PIpe line
 rf_pipeline = Pipeline(steps=[
@@ -100,12 +93,6 @@ rf_pipeline = Pipeline(steps=[
     ))
 ])
 
-"""#Task-4
-
-We Selected RandomForestClassifier because it handles non-linear relation,also it need minimal prepropcessing,perform well on mediam dataseet,best for binary classification yes or no
-
-#Task-5
-"""
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
@@ -114,16 +101,13 @@ X_train, X_test, y_train, y_test = train_test_split(
 rf_pipeline.fit(X_train, y_train)
 y_pred = rf_pipeline.predict(X_test)
 
-"""#Task-6"""
 
-# from google ,i searched google for scoring param in binary classification
 score = cross_val_score(rf_pipeline, X_train, y_train,
                         cv=5, scoring='accuracy')
 score
 
-"""#Task-7"""
 
-grid_param = {  # iused google for best param
+grid_param = {
     'classifier__n_estimators': [100, 200],
     'classifier__max_depth': [None, 10, 20],
     'classifier__min_samples_split': [2, 5],
@@ -160,9 +144,6 @@ rs.fit(X_train, y_train)
 print("best param:", rs.best_params_)
 print("best   score:", rs.best_score_)
 
-"""#Task-8
-
-"""
 
 if gs.best_score_ >= rs.best_score_:
     # print("yes")
@@ -170,7 +151,6 @@ if gs.best_score_ >= rs.best_score_:
 else:
     model = rs.best_estimator
 
-"""#Task-9"""
 
 pred = model.predict(X_test)
 
